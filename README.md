@@ -1,141 +1,53 @@
-
 <body>
-    <h1>Desafio de Programação</h1>
-    <p>Este repositório contém a resolução de um conjunto de desafios de programação, abordando diferentes conceitos e habilidades em algoritmos e manipulação de dados. Os desafios são:</p>
-    <h2>1) Soma dos Números de 1 até o Índice</h2>
-    <p><strong>Problema:</strong></p>
-    <pre>
-        int INDICE = 13, SOMA = 0, K = 0;
-        Enquanto K < INDICE faça { K = K + 1; SOMA = SOMA + K; }
-        Imprimir(SOMA);
-    </pre>
-    <p><strong>Objetivo:</strong> Ao final do processamento, qual será o valor da variável <code>SOMA</code>?</p>
-    <p><strong>Resolução:</strong></p>
-    <p>A variável <code>SOMA</code> irá acumular a soma dos números de 1 até 13. O valor final de <code>SOMA</code> será 91, pois a soma dos números de 1 a 13 é:</p>
-    <pre>
-        SOMA = 1 + 2 + 3 + ... + 13 = 91
-    </pre>
-    <h2>2) Verificador de Sequência de Fibonacci</h2>
-    <p><strong>Problema:</strong></p>
-    <p>Dado a sequência de Fibonacci, onde se inicia por 0 e 1, e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), escreva um programa onde, informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não à sequência.</p>
-    <p><strong>Código:</strong></p>
-    <pre>
-        function fibonacciChecker(number) {
-          let a = 0;
-          let b = 1;
-          let soma = 0;
-
-          while (a <= number) {
-            if (a === number) {
-              return \`\${number} pertence à sequência de Fibonacci.\`;
-            }
-            soma = a + b;
-            a = b;
-            b = soma;
-          }
-          return \`\${number} não pertence à sequência de Fibonacci.\`;
-        }
-
-        console.log(fibonacciChecker(21)); // Exemplo de uso
-    </pre>
-    <h2>3) Faturamento Diário de uma Distribuidora</h2>
-    <p><strong>Problema:</strong></p>
-    <p>Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, calcule e retorne:</p>
-    <ul>
-        <li>O menor valor de faturamento ocorrido em um dia do mês.</li>
-        <li>O maior valor de faturamento ocorrido em um dia do mês.</li>
-        <li>O número de dias no mês em que o valor de faturamento diário foi superior à média mensal.</li>
-    </ul>
-    <p><strong>Instruções:</strong></p>
-    <ul>
-        <li>Os dados de faturamento mensal devem ser fornecidos em formato <strong>JSON</strong> ou <strong>XML</strong>.</li>
-        <li>Ignorar dias sem faturamento (finais de semana e feriados).</li>
-    </ul>
-    <p><strong>Exemplo de entrada (JSON):</strong></p>
-    <pre>
-    {
-      "faturamento_diario": [100, 200, 0, 500, 300, 0, 400, 250, 600, 0]
-    }
-    </pre>
-    <p><strong>Código (em JavaScript):</strong></p>
-    <pre>
-        function faturamentoMensal(dados) {
-          let menorFaturamento = Math.min(...dados);
-          let maiorFaturamento = Math.max(...dados);
-          let soma = dados.filter(valor => valor > 0).reduce((acc, valor) => acc + valor, 0);
-          let media = soma / dados.filter(valor => valor > 0).length;
-          let diasAcimaMedia = dados.filter(valor => valor > media).length;
-
-          return {
-            menorFaturamento,
-            maiorFaturamento,
-            diasAcimaMedia
-          };
-        }
-
-        const faturamentoDiario = [100, 200, 0, 500, 300, 0, 400, 250, 600, 0];
-        console.log(faturamentoMensal(faturamentoDiario));
-    </pre>
-
-    <h2>4) Cálculo de Percentual de Representação por Estado</h2>
-    <p><strong>Problema:</strong></p>
-    <p>Dado o valor de faturamento mensal de uma distribuidora detalhado por estado:</p>
-    <ul>
-        <li>SP – R$67.836,43</li>
-        <li>RJ – R$36.678,66</li>
-        <li>MG – R$29.229,88</li>
-        <li>ES – R$27.165,48</li>
-        <li>Outros – R$19.849,53</li>
-    </ul>
-    <p>Escreva um programa que calcule o percentual de representação que cada estado teve dentro do valor total mensal da distribuidora.</p>
-    <p><strong>Código (em JavaScript):</strong></p>
-    <pre>
-        const faturamentoEstados = {
-          SP: 67836.43,
-          RJ: 36678.66,
-          MG: 29229.88,
-          ES: 27165.48,
-          Outros: 19849.53
-        };
-
-        function calcularPercentual(faturamento) {
-          const total = Object.values(faturamento).reduce((acc, valor) => acc + valor, 0);
-          let percentuais = {};
-
-          for (let estado in faturamento) {
-            percentuais[estado] = ((faturamento[estado] / total) * 100).toFixed(2);
-          }
-
-          return percentuais;
-        }
-
-        console.log(calcularPercentual(faturamentoEstados));
-    </pre>
-
-    <h2>5) Inverter uma String</h2>
-    <p><strong>Problema:</strong></p>
-    <p>Escreva um programa que inverta os caracteres de uma string. <strong>Evite usar funções prontas, como o <code>reverse</code></strong>.</p>
-    <p><strong>Código (em JavaScript):</strong></p>
-    <pre>
-        function inverterString(str) {
-          let resultado = '';
-          for (let i = str.length - 1; i >= 0; i--) {
-            resultado += str[i];
-          }
-          return resultado;
-        }
-
-        console.log(inverterString("Olá, Mundo!")); // "!odnuM ,álO"
-    </pre>
-
-    <h2>Conclusão</h2>
-    <p>Esses desafios abordam conceitos importantes como manipulação de sequências numéricas, cálculos de médias, manipulação de strings e de estruturas de dados. Eles são ótimos para praticar algoritmos e melhorar habilidades de programação.</p>
-    <p>Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para abrir uma <strong>issue</strong> ou contribuir com melhorias. 😊</p>
-
-    <h2>Tecnologias usadas:</h2>
-    <ul>
-        <li>JavaScript (com exemplos prontos para execução no navegador)</li>
-        <li>JSON (para manipulação de dados de faturamento)</li>
-    </ul>
+    <h1>Desenvolvedor</h1>
+    <p class="time">Tempo Restante: 00:49:36</p>
+    <h2>Pergunta 2 de 2 - Técnica:</h2>
+    <ol>
+        <li>
+            <strong>1)</strong> Observe o trecho de código abaixo: <br>
+            <pre>int INDICE = 13, SOMA = 0, K = 0; 
+Enquanto K &lt; INDICE faça { 
+    K = K + 1; 
+    SOMA = SOMA + K; 
+}
+Imprimir(SOMA);</pre>
+            Ao final do processamento, qual será o valor da variável SOMA?
+        </li>
+        <li>
+            <strong>2)</strong> Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), escreva um programa na linguagem que desejar onde, informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não à sequência.
+            <br><strong>IMPORTANTE:</strong> Esse número pode ser informado através de qualquer entrada de sua preferência ou pode ser previamente definido no código;
+        </li>
+        <li>
+            <strong>3)</strong> Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, faça um programa, na linguagem que desejar, que calcule e retorne:
+            <ul>
+                <li>O menor valor de faturamento ocorrido em um dia do mês;</li>
+                <li>O maior valor de faturamento ocorrido em um dia do mês;</li>
+                <li>Número de dias no mês em que o valor de faturamento diário foi superior à média mensal.</li>
+            </ul>
+            <strong>IMPORTANTE:</strong>
+            <ul>
+                <li>Usar o json ou xml disponível como fonte dos dados do faturamento mensal;</li>
+                <li>Podem existir dias sem faturamento, como nos finais de semana e feriados. Estes dias devem ser ignorados no cálculo da média;</li>
+            </ul>
+        </li>
+        <li>
+            <strong>4)</strong> Dado o valor de faturamento mensal de uma distribuidora, detalhado por estado:
+            <ul>
+                <li>SP – R$67.836,43</li>
+                <li>RJ – R$36.678,66</li>
+                <li>MG – R$29.229,88</li>
+                <li>ES – R$27.165,48</li>
+                <li>Outros – R$19.849,53</li>
+            </ul>
+            Escreva um programa na linguagem que desejar onde calcule o percentual de representação que cada estado teve dentro do valor total mensal da distribuidora.
+        </li>
+        <li>
+            <strong>5)</strong> Escreva um programa que inverta os caracteres de um string.
+            <br><strong>IMPORTANTE:</strong>
+            <ul>
+                <li>Essa string pode ser informada através de qualquer entrada de sua preferência ou pode ser previamente definida no código;</li>
+                <li>Evite usar funções prontas, como, por exemplo, reverse;</li>
+            </ul>
+        </li>
+    </ol>
 </body>
-
